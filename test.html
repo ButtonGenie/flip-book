@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试css3翻页效果</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: '微软雅黑';
+        }
+
+        .book-wrapper {
+            width: 600px;
+            height: 300px;
+            position: absolute;
+            top: 20%;
+            left: 40%;
+        }
+
+        .book {
+            width: 100%;
+            height: 100%;
+            background: #fafbfc;
+            transform: rotateX(15deg);
+            border: 10px solid #64bbf9;
+            border-radius: 15px;
+            box-sizing: border-box;
+        }
+
+        .book-mask {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 5px;
+            background-color: #badbfc;
+            border-radius: 15px;
+        }
+
+        .book-page {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            text-align: center;
+            background-color: #fafbfc;
+        }
+
+        .book-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .flip-animation {
+            animation: flipBook 4s infinite;
+        }
+
+        @keyframes flipBook {
+            0%,
+            50% {
+                background-color: #fafbfc;
+                transform: rotateY(0deg);
+            }
+            64% {
+                background-color: #e9edf3;
+            }
+            100% {
+                background-color: #fafbfc;
+                transform: rotateY(-180deg);
+            }
+        }
+
+        .flip-animation2 {
+            animation: flipBook2 4s infinite;
+        }
+
+        @keyframes flipBook2 {
+            0%,
+            50% {
+                background-color: #fafbfc;
+                transform: rotateY(0deg);
+            }
+            64% {
+                background-color: #e9edf3;
+            }
+            98%,
+            100% {
+                background-color: #fafbfc;
+                transform: rotateY(-180deg);
+            }
+        }
+
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+
+        .point {
+            transform-origin: 0% 50%;
+        }
+
+        .flip-card {
+            backface-visibility: hidden;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        .left-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        /* 打钩 */
+
+        .m-duigou {
+            width: 100px;
+            height: 50px;
+            position: absolute;
+            transform: rotate(-45deg);
+            overflow: hidden;
+            top: 35%;
+            left: 30%;
+        }
+
+        .m-duigou:before,
+        .m-duigou:after {
+            content: "";
+            position: absolute;
+            background: #79d290;
+            border-radius: 500px
+        }
+
+        .m-duigou:before {
+            width: 8px;
+            height: 50px;
+            left: 0;
+            top: -100%;
+            animation: dgLeft 4s linear both infinite;
+        }
+
+        .m-duigou:after {
+            width: 80px;
+            height: 8px;
+            bottom: 0;
+            left: -80%;
+            animation: dgRight 4s linear both infinite;
+        }
+
+        @keyframes dgLeft {
+            0% {
+                top: -100%
+            }
+            12.5%,
+            50%,
+            100% {
+                top: 0%
+            }
+        }
+
+        @keyframes dgRight {
+            0%,
+            12.5% {
+                left: -80%
+            }
+            25%,
+            50%,
+            100% {
+                left: 0%
+            }
+        }
+        /* 圆环 */
+
+        .circle-wrapper {
+            width: 174px;
+            height: 200px;
+            position: absolute;
+            top: 20%;
+            left: 15%;
+        }
+
+        .wrapper {
+            width: 87px;
+            height: 178px;
+            position: absolute;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .right {
+            right: 0;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .circle {
+            width: 160px;
+            height: 160px;
+            border: 8px solid transparent;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+        }
+
+        .rightcircle {
+            position: absolute;
+            border-top: 8px solid #79d290;
+            border-right: 8px solid #79d290;
+            right: 0;
+            transform: rotate(-135deg);
+            animation: circle-right 4s linear infinite;
+            z-index: 1;
+        }
+
+        .leftcircle {
+            position: absolute;
+            border-bottom: 8px solid #79d290;
+            border-left: 8px solid #79d290;
+            left: 0;
+            transform: rotate(-135deg);
+            animation: circle-left 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes circle-right {
+            0%,
+            12.5% {
+                transform: rotate(-135deg);
+            }
+            25%,
+            50%,
+            100% {
+                transform: rotate(-315deg);
+            }
+        }
+
+        @keyframes circle-left {
+            0% {
+                transform: rotate(-135deg);
+            }
+            12.5%,
+            25%,
+            50%,
+            100% {
+                transform: rotate(-315deg);
+            }
+        }
+        /* 书上的横条 */
+
+        .block-center {
+            margin: auto;
+        }
+
+        .text-c {
+            text-align: center;
+        }
+
+        .text-l {
+            text-align: left;
+        }
+
+        .book-bar-wrapper {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            position: relative;
+        }
+
+        .book-bar {
+            height: 10px;
+            width: 0;
+            background-color: #cbd5dc;
+            display: inline-block;
+            position: absolute;
+        }
+
+        .book-bar.one {
+            top: 50px;
+            animation: bookBarOne 4s linear infinite, bookBarHidden 4s linear infinite;
+        }
+
+        @keyframes bookBarHidden {
+            0%,
+            65% {
+                opacity: 1;
+            }
+            68%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes bookBarOne {
+            0%,
+            25% {
+                width: 0;
+            }
+            31.25%,
+            100% {
+                width: 100%;
+            }
+        }
+
+
+        .book-bar.two {
+            top: 70px;
+            animation: bookBarTwo 4s linear infinite, bookBarHidden 4s linear infinite;
+        }
+
+        @keyframes bookBarTwo {
+            0%,
+            31.25% {
+                width: 0;
+            }
+            37.5%,
+            100% {
+                width: 100%;
+            }
+        }
+
+        .book-bar.three {
+            top: 90px;
+            animation: bookBarThree 4s linear infinite, bookBarHidden 4s linear infinite;
+        }
+
+        @keyframes bookBarThree {
+            0%,
+            37.5% {
+                width: 0;
+            }
+            43.75%,
+            100% {
+                width: 100%;
+            }
+        }
+
+        .book-bar.last {
+            top: 110px;
+            animation: bookBarLast 4s linear infinite, bookBarHidden 4s linear infinite;
+        }
+
+        @keyframes bookBarLast {
+            0%,
+            43.75% {
+                width: 0;
+            }
+            50%,
+            100% {
+                width: 60%;
+            }
+        }
+        /* 文字 */
+
+        .book-text {
+            font-size: 22px;
+            color: #999a9c;
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        .book-text>span {
+            display: inline-block;
+        }
+
+        .book-word-one {
+            animation: wordJump1 4s linear infinite;
+        }
+
+        @keyframes wordJump1 {
+            0%,
+            50% {
+                transform: translateY(0) rotate(0);
+            }
+            53% {
+                transform: translateY(0) rotate(-10deg);
+            }
+            56% {
+                transform: translateY(-5px) rotate(0);
+            }
+            59% {
+                transform: translateY(0) rotate(10deg);
+            }
+            62%,
+            75%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+        }
+
+        .book-word-two {
+            animation: wordJump2 4s linear infinite;
+        }
+
+        @keyframes wordJump2 {
+            0%,
+            53% {
+                transform: translateY(0) rotate(0);
+            }
+            56% {
+                transform: translateY(0) rotate(-10deg);
+            }
+            59% {
+                transform: translateY(-5px) rotate(0);
+            }
+            62% {
+                transform: translateY(0) rotate(10deg);
+            }
+            65%,
+            75%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+        }
+
+        .book-word-three {
+            animation: wordJump3 4s linear infinite;
+        }
+
+        @keyframes wordJump3 {
+            0%,
+            56% {
+                transform: translateY(0) rotate(0);
+            }
+            59% {
+                transform: translateY(0) rotate(-10deg);
+            }
+            62% {
+                transform: translateY(-5px) rotate(0);
+            }
+            65% {
+                transform: translateY(0) rotate(10deg);
+            }
+            68%,
+            75%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+        }
+
+        .book-word-four {
+            animation: wordJump4 4s linear infinite;
+        }
+
+        @keyframes wordJump4 {
+            0%,
+            59% {
+                transform: translateY(0) rotate(0);
+            }
+            62% {
+                transform: translateY(0) rotate(-10deg);
+            }
+            65% {
+                transform: translateY(-5px) rotate(0);
+            }
+            68% {
+                transform: translateY(0) rotate(10deg);
+            }
+            71%,
+            75%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="book-wrapper">
+        <div class="book-mask"></div>
+        <div class="book preserve-3d">
+            <div class="book-left">
+                <div class="left-wrapper">
+                    <!-- 打钩 -->
+                    <div class="m-duigou"></div>
+                    <!-- 圆环 -->
+                    <div class="circle-wrapper">
+                        <div class="wrapper left">
+                            <div class="circle leftcircle"></div>
+                        </div>
+                        <div class="wrapper right">
+                            <div class="circle rightcircle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="book-page flip-animation2 point">
+                <div class="flip-card">
+                    <div class="book-bar-wrapper">
+                        <div class="book-bar one"></div>
+                        <div class="book-bar two"></div>
+                        <div class="book-bar three"></div>
+                        <div class="book-bar last"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="book-page flip-animation point">
+                <div class="flip-card">
+                    <div class="book-bar-wrapper">
+                        <div class="book-bar one"></div>
+                        <div class="book-bar two"></div>
+                        <div class="book-bar three"></div>
+                        <div class="book-bar last"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="book-text">
+            <span class="book-word-one">加</span>
+            <span class="book-word-two">载</span>
+            <span class="book-word-three">中</span>
+            <span class="book-word-four">...</span>
+        </div>
+    </div>
+</body>
+
+</html>
